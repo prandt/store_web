@@ -2,12 +2,16 @@
 
 This project's gonna be created 
 
+## Stack
 
-## Endpoints
+Spring Boot
+
+MongoDB
 
 
-### Products 
 
-Find all Products > Method: `GET` Endpoint: `/products`
+## Products 
 
-Add a product > Method: `POST` Endpoint: `/products`
+> Find all Products > Method: `GET` Endpoint: `/products`
+
+> Add a product > Method: `POST` Endpoint: `/products`

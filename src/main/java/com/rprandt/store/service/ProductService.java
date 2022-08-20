@@ -1,6 +1,7 @@
 package com.rprandt.store.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,15 +13,20 @@ import com.rprandt.store.repository.ProductRepository;
 public class ProductService {
     
     @Autowired
-    private ProductRepository productRepository;
+    private ProductRepository repo;
 
     public List<Product> findAll(){
-        return productRepository.findAll();
+        return repo.findAll();
+    }
+
+    public Product find(String id){
+        Optional<Product> obj = repo.findById(id);
+        return obj.orElseThrow();
     }
 
     public void save(Product obj){
         try {
-            productRepository.save(obj);
+            repo.save(obj);
         } catch (Exception e) {
         }
     }
