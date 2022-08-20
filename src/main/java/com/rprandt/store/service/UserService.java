@@ -1,5 +1,7 @@
 package com.rprandt.store.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,6 +35,12 @@ public class UserService implements UserDetailsService {
             bCryptPasswordEncoder.encode(obj.getPassword())
         );
         repository.save(obj);
+    }
+
+    public User find(String id){
+        Optional<User> obj = repository.findById(id);
+        System.out.println(obj);
+        return obj.orElseThrow();
     }
     
 }
