@@ -15,7 +15,7 @@ public class UserResource {
     @Autowired
     private UserService service;
 
-    @PostMapping
+    @PostMapping("/create")
     public void save(@RequestBody User obj){
         service.save(obj);
     }
