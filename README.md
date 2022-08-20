@@ -9,4 +9,5 @@ This project's gonna be created
 ### Products 
 
 Find all Products > Method: `GET` Endpoint: `/products`
+
 Add a product > Method: `POST` Endpoint: `/products`
