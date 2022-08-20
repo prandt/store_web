@@ -1,17 +1,13 @@
 package com.rprandt.store.domain;
 
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.rprandt.store.enums.Profile;
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,33 +15,26 @@ import lombok.Setter;
 @Document
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class User implements UserDetails{
-
-	private static final long serialVersionUID = 1L;
+public class User implements UserDetails {
     @Id
     private String id;
-    private String firstName;
-    private String lastName;
+    private String name;
     private String email;
     private String password;
-    private Collection<? extends GrantedAuthority> authorities;
+    private Set<Role> authorities = new HashSet<>();
+
+    public User(String id, String name, String email, String password){
+        this.id = id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+    }
 
     @Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
-	}
-
-	@Override
-	public String getPassword() {
-		return password;
-	}
-
-	@Override
-	public String getUsername() {
-		return email;
-	}
+    public String getUsername() {
+        return email;
+    }
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -66,8 +55,9 @@ public class User implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-	
-	public boolean hasHole(Profile profile) {
-		return getAuthorities().contains(new SimpleGrantedAuthority(profile.getDescription()));
+
+    @Override
+	public Set<Role> getAuthorities() {
+		return authorities;
 	}
 }

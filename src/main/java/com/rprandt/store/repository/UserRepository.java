@@ -7,5 +7,5 @@ import com.rprandt.store.domain.User;
 
 @Repository
 public interface UserRepository extends MongoRepository<User, String>{
-   // User findByEmail(String email);
+    User findByEmail(String email);
 }
