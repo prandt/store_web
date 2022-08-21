@@ -32,7 +32,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Autowired
 	private JwtTokenStore tokenStore;
 	
-	private static final String[] PUBLIC = { "/oauth/token", "/users/create" };
+	private static final String[] PUBLIC = { "/oauth/token", "/oauth/users/create" };
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
