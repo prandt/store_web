@@ -9,7 +9,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.rprandt.store.domain.Role;
 import com.rprandt.store.domain.User;
+import com.rprandt.store.repository.RoleRepository;
 import com.rprandt.store.repository.UserRepository;
 
 @Service
@@ -17,6 +19,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
 	private UserRepository repository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -34,6 +39,11 @@ public class UserService implements UserDetailsService {
         obj.setPassword(
             bCryptPasswordEncoder.encode(obj.getPassword())
         );
+
+        Role admin = roleRepository.findByAuthority("ADMIN");
+        Role user = roleRepository.findByAuthority("USER");
+        obj.getAuthorities().add(admin);
+        obj.getAuthorities().add(user);
         repository.save(obj);
     }
 
@@ -42,5 +52,4 @@ public class UserService implements UserDetailsService {
         System.out.println(obj);
         return obj.orElseThrow();
     }
-    
 }
