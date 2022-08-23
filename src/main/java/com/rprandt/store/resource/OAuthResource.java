@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rprandt.store.domain.User;
+import com.rprandt.store.dto.UserNewDTO;
 import com.rprandt.store.service.UserService;
 
 @RestController
@@ -16,7 +16,7 @@ public class OAuthResource {
     private UserService userService;
 
     @PostMapping("/user/create")
-    public void save(@RequestBody User obj){
+    public void save(@RequestBody UserNewDTO obj){
         userService.save(obj);
     }
 }

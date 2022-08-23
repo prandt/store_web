@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.rprandt.store.domain.Role;
 import com.rprandt.store.domain.User;
 import com.rprandt.store.dto.UserDTO;
+import com.rprandt.store.dto.UserNewDTO;
 import com.rprandt.store.repository.RoleRepository;
 import com.rprandt.store.repository.UserRepository;
 
@@ -38,15 +39,13 @@ public class UserService implements UserDetailsService {
 		return user;
     }
 
-    public void save(User obj){
+    public void save(UserNewDTO userNewDTO){
+        User obj = convertUserNewDTO(userNewDTO);
         obj.setPassword(
             bCryptPasswordEncoder.encode(obj.getPassword())
         );
-
-        Role admin = roleRepository.findByAuthority("ADMIN");
-        Role user = roleRepository.findByAuthority("USER");
-        obj.getAuthorities().add(admin);
-        obj.getAuthorities().add(user);
+        Role userRole = roleRepository.findByAuthority("USER");
+        obj.getAuthorities().add(userRole);
         repository.save(obj);
     }
 
@@ -61,5 +60,16 @@ public class UserService implements UserDetailsService {
     public User find(String id){
         Optional<User> obj = repository.findById(id);
         return obj.orElseThrow();
+    }
+
+    public User convertUserNewDTO(UserNewDTO userNewDTO){
+        User user = new User(
+            null,
+            userNewDTO.getName(),
+            userNewDTO.getEmail(),
+            userNewDTO.getPassword()
+        );
+        user.addAddressToAddresses(userNewDTO.getAddress());
+        return user;
     }
 }
