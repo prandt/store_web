@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.rprandt.store.domain.Role;
 import com.rprandt.store.domain.User;
+import com.rprandt.store.dto.AddressDTO;
 import com.rprandt.store.dto.UserDTO;
 import com.rprandt.store.dto.UserNewDTO;
 import com.rprandt.store.repository.RoleRepository;
@@ -46,7 +47,7 @@ public class UserService implements UserDetailsService {
         );
         Role userRole = roleRepository.findByAuthority("USER");
         obj.getAuthorities().add(userRole);
-        repository.save(obj);
+        repository.insert(obj);
     }
 
     public List<UserDTO> findAll(){
@@ -60,6 +61,17 @@ public class UserService implements UserDetailsService {
     public User find(String id){
         Optional<User> obj = repository.findById(id);
         return obj.orElseThrow();
+    }
+
+    public void update(String id, User obj){
+        obj = find(id);
+        obj.setId(id);
+        repository.save(obj);
+    }
+
+    public void addAdrress(String userId, AddressDTO obj){
+        // User user = find(userId);
+        
     }
 
     public User convertUserNewDTO(UserNewDTO userNewDTO){
