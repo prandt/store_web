@@ -40,14 +40,29 @@ public class UserService implements UserDetailsService {
 		return user;
     }
 
+    public boolean isEmailExists(String email){
+        try {
+            return repository.findByEmail(email) != null;
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
     public void save(UserNewDTO userNewDTO){
-        User obj = convertUserNewDTO(userNewDTO);
-        obj.setPassword(
-            bCryptPasswordEncoder.encode(obj.getPassword())
-        );
-        Role userRole = roleRepository.findByAuthority("USER");
-        obj.getAuthorities().add(userRole);
-        repository.insert(obj);
+        String email = userNewDTO.getEmail();
+        if(!isEmailExists(email)){
+            User obj = convertUserNewDTO(userNewDTO);
+            obj.setPassword(
+                bCryptPasswordEncoder.encode(obj.getPassword())
+            );
+            Role userRole = roleRepository.findByAuthority("USER");
+            obj.getAuthorities().add(userRole);
+            repository.insert(obj);
+        }
+        else {
+            // TODO: handle exception
+            System.out.println("Nao pode salvar pois o email já existe");
+        }
     }
 
     public List<UserDTO> findAll(){
