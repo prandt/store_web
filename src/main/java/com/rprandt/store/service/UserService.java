@@ -60,7 +60,6 @@ public class UserService implements UserDetailsService {
             repository.insert(obj);
         }
         else {
-            // TODO: handle exception
             System.out.println("Nao pode salvar pois o email já existe");
         }
     }
