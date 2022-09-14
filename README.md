@@ -12,4 +12,3 @@ cd store_web
 docker-compose up --build
 ```
 
-## Documentaion
