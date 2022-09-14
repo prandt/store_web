@@ -3,6 +3,7 @@ package com.rprandt.store.resource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +28,9 @@ public class UserResource {
     }
 
     @GetMapping("/{id}")
-    public User find(@PathVariable String id) {
-       return service.find(id);
+    public ResponseEntity<User> find(@PathVariable String id) {
+        User body = service.find(id);
+        return ResponseEntity.ok().body(body);
     }
 
     @PostMapping("{id}/address")

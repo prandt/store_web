@@ -3,7 +3,6 @@ package com.rprandt.store.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,6 +17,7 @@ import com.rprandt.store.dto.UserDTO;
 import com.rprandt.store.dto.UserNewDTO;
 import com.rprandt.store.repository.RoleRepository;
 import com.rprandt.store.repository.UserRepository;
+import com.rprandt.store.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -75,7 +75,7 @@ public class UserService implements UserDetailsService {
 
     public User find(String id){
         Optional<User> obj = repository.findById(id);
-        return obj.orElseThrow();
+        return obj.orElseThrow(() -> new ObjectNotFoundException("User not found"));
     }
 
     public void update(String id, User obj){
