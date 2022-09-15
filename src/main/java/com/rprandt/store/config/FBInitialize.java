@@ -18,7 +18,7 @@ public class FBInitialize {
     public void initialize() throws IOException{
         try {
             FileInputStream serviceAccount =
-            new FileInputStream("/creds/serviceAccountKey.json");
+            new FileInputStream("./creds/serviceAccountKey.json");
             FirebaseOptions.Builder builder = FirebaseOptions.builder();
             FirebaseOptions options = builder
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))

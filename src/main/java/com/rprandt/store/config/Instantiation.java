@@ -12,7 +12,7 @@ import com.rprandt.store.repository.RoleRepository;
 public class Instantiation implements CommandLineRunner{
    @Autowired
    private RoleRepository roleRepository;
-
+  
     @Override
     public void run(String... args) throws Exception {
 
