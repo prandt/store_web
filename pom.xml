@@ -58,6 +58,12 @@
 			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.google.firebase</groupId>
+			<artifactId>firebase-admin</artifactId>
+			<version>9.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
