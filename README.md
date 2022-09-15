@@ -1,6 +1,6 @@
-# Store web API
+# 👨🏻‍💻 Store web API
 
-This project's gonna be created 
+Online Store API to develop my skills in market technologies.
 
 ## 🛠️ Configuration
 
