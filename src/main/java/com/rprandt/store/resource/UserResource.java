@@ -40,6 +40,6 @@ public class UserResource {
 
     @GetMapping("/test")
     public String test(){
-        return "FUNCINOU";
+        return "OUTRO TESTE | FUNCINOU";
     }
 }
