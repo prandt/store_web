@@ -36,7 +36,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	private static final String[] PUBLIC = { "/oauth/token", "/oauth/user/create" };
 
 	private static final String[] PUBLIC_MATCHES_GET = {
-		"/products/**"
+		"/products/**",
+		"/users/test"
 	};
 
 	@Override

@@ -37,4 +37,9 @@ public class UserResource {
     public void addAdrress(@PathVariable String userId, AddressDTO obj){
         service.addAdrress(userId, obj);
     }
+
+    @GetMapping("/test")
+    public String test(){
+        return "FUNCINOU";
+    }
 }
