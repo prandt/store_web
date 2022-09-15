@@ -16,13 +16,18 @@ public class FBInitialize {
     
     @PostConstruct
     public void initialize() throws IOException{
-        FileInputStream serviceAccount =
-        new FileInputStream("/creds/serviceAccountKey.json");
-        FirebaseOptions.Builder builder = FirebaseOptions.builder();
-        FirebaseOptions options = builder
-            .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-            .build();
-        FirebaseApp.initializeApp(options);
+        try {
+            FileInputStream serviceAccount =
+            new FileInputStream("/creds/serviceAccountKey.json");
+            FirebaseOptions.Builder builder = FirebaseOptions.builder();
+            FirebaseOptions options = builder
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+            FirebaseApp.initializeApp(options);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }
