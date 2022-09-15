@@ -23,8 +23,9 @@ public class UserResource {
     private UserService service;
 
     @GetMapping
-    public List<UserDTO> findAll(){
-        return service.findAll();
+    public ResponseEntity<List<UserDTO>> findAll(){
+        List<UserDTO> list = service.findAll();
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/{id}")
@@ -34,12 +35,9 @@ public class UserResource {
     }
 
     @PostMapping("{id}/address")
-    public void addAdrress(@PathVariable String userId, AddressDTO obj){
+    public ResponseEntity<Void> addAdrress(@PathVariable String userId, AddressDTO obj){
         service.addAdrress(userId, obj);
+        return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/test")
-    public String test(){
-        return "OUTRO TESTE | FUNCINOU";
-    }
 }

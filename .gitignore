@@ -32,4 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
+
+/creds/
+/creds/**
 # /src/main/resources/application-prod.properties

@@ -1,6 +1,7 @@
 package com.rprandt.store.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,8 @@ public class OAuthResource {
     private UserService userService;
 
     @PostMapping("/user/create")
-    public void save(@RequestBody UserNewDTO obj){
+    public ResponseEntity<Void> save(@RequestBody UserNewDTO obj){
         userService.save(obj);
+        return ResponseEntity.ok().build();
     }
 }
