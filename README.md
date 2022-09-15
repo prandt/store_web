@@ -2,7 +2,14 @@
 
 This project's gonna be created 
 
-## Installation 
+## 🛠️ Configuration
+
+Fisrt u need download your serviceAccounKey of Firebase
+
+Add **serviceAccounKey.json** to  📂store_web/creds/  
+
+
+## 💻 Installation 
 
 To run this project you need install Docker in your computer
 
